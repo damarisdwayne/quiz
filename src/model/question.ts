@@ -11,7 +11,7 @@ export default class QuestionModel {
     id: number,
     statement: string,
     answers: AnswerModel[],
-    isCorrect = false
+    isCorrect = false,
   ) {
     this.#id = id;
     this.#statement = statement;
@@ -33,29 +33,33 @@ export default class QuestionModel {
   }
 
   get answered() {
-    for (let answer of this.#answers) {
+    for (const answer of this.#answers) {
       if (answer.isShowed) return true;
     }
     return false;
   }
 
+  get notAnswered() {
+    return !this.answered;
+  }
+
   replyWith(index: number): QuestionModel {
     const isCorrect = this.#answers[index]?.isCorrect;
     const answers = this.#answers.map((answer, i) => {
-      const answerSelected = index === i
-      const mustShow = answerSelected || answer.isCorrect
-      return mustShow ? answer.show() : answer
-    })
-    return new QuestionModel(this.id, this.statement, answers, isCorrect)
+      const answerSelected = index === i;
+      const mustShow = answerSelected || answer.isCorrect;
+      return mustShow ? answer.show() : answer;
+    });
+    return new QuestionModel(this.id, this.statement, answers, isCorrect);
   }
 
   shuffleAnswers(): QuestionModel {
-    let scrambledAnswers = shuffle(this.#answers);
+    const scrambledAnswers = shuffle(this.#answers);
     return new QuestionModel(
       this.#id,
       this.#statement,
       scrambledAnswers,
-      this.#isCorrect
+      this.#isCorrect,
     );
   }
 

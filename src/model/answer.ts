@@ -1,43 +1,43 @@
 export default class AnswerModel {
-  #value: string
-  #isCorrect: boolean
-  #isShowed: boolean
+  #value: string;
+  #isCorrect: boolean;
+  #isShowed: boolean;
 
   constructor(value: string, isCorrect: boolean, isShowed = false) {
-    this.#value = value
-    this.#isCorrect = isCorrect
-    this.#isShowed = isShowed
+    this.#value = value;
+    this.#isCorrect = isCorrect;
+    this.#isShowed = isShowed;
   }
 
   static correct(value: string) {
-    return new AnswerModel(value, true)
+    return new AnswerModel(value, true);
   }
 
   static wrong(value: string) {
-    return new AnswerModel(value, false)
+    return new AnswerModel(value, false);
   }
 
   get value() {
-    return this.#value
+    return this.#value;
   }
-  
+
   get isCorrect() {
-    return this.#isCorrect
+    return this.#isCorrect;
   }
 
   get isShowed() {
-    return this.#isShowed
+    return this.#isShowed;
   }
 
   show() {
-    return new AnswerModel(this.#value, this.#isCorrect, true)
+    return new AnswerModel(this.#value, this.#isCorrect, true);
   }
 
   toObject() {
     return {
       value: this.#value,
       isCorrect: this.#isCorrect,
-      isShowed: this.#isShowed
+      isShowed: this.#isShowed,
     };
   }
 }
