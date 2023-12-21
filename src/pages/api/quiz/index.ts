@@ -1,13 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import questions from '../questionBank'
+import { shuffle } from '@/utils/arrays'
 
-type Data = {
-  name: string
-}
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse
 ) {
-  res.status(200).json({ name: 'John Doe' })
+    const ids = questions.map(question => question.id)
+    res.status(200).json(shuffle(ids))
 }
