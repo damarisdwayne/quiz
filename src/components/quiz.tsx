@@ -17,7 +17,7 @@ const Quiz = (props: QuizProps) => {
     }
   };
   return (
-    <div className="flex flex-col justify-center items-center h-screen">
+    <div className="flex flex-col justify-center items-center p-10 h-screen">
       {props.question ? (
         <Question
           value={props.question}
