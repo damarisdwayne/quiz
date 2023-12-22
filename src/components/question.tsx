@@ -5,6 +5,7 @@ import Timer from "./timer";
 
 interface QuestionProps {
   value: QuestionModel;
+  timeToAnswer?: number;
   onResponse: (index: number) => void;
   timeOut: () => void;
 }
@@ -23,7 +24,7 @@ export const Question = (props: QuestionProps) => {
     return question.answers.map((answer, i) => {
       return (
         <Answer
-          key={i}
+          key={`${question.id}-${i}`}
           value={answer}
           index={i}
           letter={letters[i].value}
@@ -35,9 +36,13 @@ export const Question = (props: QuestionProps) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center">
       <Statement label={question.statement} />
-      <Timer duration={10} timeOut={props.timeOut} />
+      <Timer
+        key={question.id}
+        duration={props.timeToAnswer ?? 10}
+        timeOut={props.timeOut}
+      />
       {renderAnswer()}
     </div>
   );

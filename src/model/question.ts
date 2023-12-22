@@ -63,6 +63,13 @@ export default class QuestionModel {
     );
   }
 
+  static createUsingObject(obj: QuestionModel): QuestionModel {
+    const answers = obj.answers.map((resp) =>
+      AnswerModel.createUsingObject(resp),
+    );
+    return new QuestionModel(obj.id, obj.statement, answers, obj.isCorrect);
+  }
+
   toObject() {
     return {
       id: this.#id,

@@ -33,6 +33,10 @@ export default class AnswerModel {
     return new AnswerModel(this.#value, this.#isCorrect, true);
   }
 
+  static createUsingObject(obj: AnswerModel): AnswerModel {
+    return new AnswerModel(obj.value, obj.isCorrect, obj.isShowed);
+  }
+
   toObject() {
     return {
       value: this.#value,
