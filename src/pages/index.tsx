@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Quiz from "@/components/quiz";
 import { useRouter } from "next/router";
 
-const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "quiz-mi8hxaawb-damarisdwayne.vercel.app";
 
 export default function Home() {
   const [questionIds, setQuestionIds] = useState<number[]>([]);
